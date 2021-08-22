@@ -1,4 +1,4 @@
-# uber_clone
+# Cruiser
 
 A new Flutter project.
 
