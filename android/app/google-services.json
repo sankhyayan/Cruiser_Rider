@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "987640509881",
+    "firebase_url": "https://uber-clone-64d20-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "uber-clone-64d20",
     "storage_bucket": "uber-clone-64d20.appspot.com"
   },
@@ -18,6 +19,43 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.chaudhuriSankhyayan.uberclone",
+            "certificate_hash": "16e31f612bd1ef49cd881096dfd1da6f45df8cd5"
+          }
+        },
+        {
+          "client_id": "987640509881-7n88rekashqali8qdm42j4rjasb3d5mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB6C9of0N47I67Jyj88_U1ZvpJxmJxr-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987640509881-7n88rekashqali8qdm42j4rjasb3d5mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987640509881:android:251150fa38d191aca2b268",
+        "android_client_info": {
+          "package_name": "com.snakhyayanChaudhuri.cruiserdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987640509881-nk041v1v7hq93vf6c63ulealb2gush8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.snakhyayanChaudhuri.cruiserdriver",
             "certificate_hash": "16e31f612bd1ef49cd881096dfd1da6f45df8cd5"
           }
         },

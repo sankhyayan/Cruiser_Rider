@@ -12,7 +12,7 @@ class CurrentUser {
     String userId = firebaseUser.uid;
     DatabaseReference currentUserReference =
         usersRef.child(userId);
-    currentUserReference.once().then((DataSnapshot _dataSnapshot) {
+    await currentUserReference.once().then((DataSnapshot _dataSnapshot) {
       if (_dataSnapshot.value != null) {
         UserDataFromSnapshot userCurrentInfo =
             UserDataFromSnapshot.fromSnapshot(_dataSnapshot);

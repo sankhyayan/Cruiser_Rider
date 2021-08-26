@@ -140,7 +140,7 @@ class CabRequestBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.circular(defaultSize * 2),
                     side: BorderSide.none),
                 color: Colors.black,
-                onPressed: () async{
+                onPressed: () async {
                   Provider.of<AppData>(context, listen: false)
                       .updateRideRequest();
                   await SaveRideRequest.saveRideRequest(context);

@@ -9,6 +9,7 @@ import 'package:uber_clone/allScreens/mainScreen/widgets/cancelRide.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/findingDriver.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/locationEntrySheet.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/profileDrawerContainer.dart';
+import 'package:uber_clone/configs/GeofireMethods/GeoFireListener.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
 import 'package:uber_clone/configs/locationRequests/userGeoLocator.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
@@ -23,11 +24,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
-  final CameraPosition _kGooglePlex = CameraPosition(
+  final CameraPosition _initialCamPos = CameraPosition(
     target: LatLng(22.570824771878623, 88.37058693225569),
     zoom: 14.4746,
   );
-  Completer<GoogleMapController> _controllerGoogleMap = Completer();
+  final Completer<GoogleMapController> _controllerGoogleMap = Completer();
   late GoogleMapController newGoogleMapController;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -121,7 +122,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             Container(
               padding: EdgeInsets.only(bottom: defaultSize * 22),
               child: GoogleMap(
-                initialCameraPosition: _kGooglePlex,
+                initialCameraPosition: _initialCamPos,
                 mapType: MapType.normal,
                 myLocationButtonEnabled: true,
                 zoomGesturesEnabled: true,
@@ -142,6 +143,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
                   await AssistantMethods.searchCoordinates(
                       await UserGeoLocation.locatePosition(), context);
+
+                  await GeoFireListener.initGeoFireListener(context);
                 },
               ),
             ),

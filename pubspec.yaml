@@ -23,6 +23,7 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   font_awesome_flutter: ^9.1.0
   animated_text_kit: ^4.2.1
+  flutter_geofire: ^2.0.0
 
 dev_dependencies:
   flutter_test:

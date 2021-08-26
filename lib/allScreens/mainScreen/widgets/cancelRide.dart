@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
-import 'package:uber_clone/database/RideRequestMethods/cancelRideRequest.dart';
 
 class CancelRide extends StatelessWidget {
   final double defaultSize;

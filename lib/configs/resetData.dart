@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
-import 'package:uber_clone/database/RideRequestMethods/cancelRideRequest.dart';
 import 'package:uber_clone/models/address.dart';
 import 'package:uber_clone/models/directionDetails.dart';
 

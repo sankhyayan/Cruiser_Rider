@@ -31,7 +31,7 @@ class UberClone extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute:FirebaseAuth.instance.currentUser == null
+        initialRoute: FirebaseAuth.instance.currentUser == null
             ? LoginScreen.idScreen
             : MainScreen.idScreen,
         routes: {

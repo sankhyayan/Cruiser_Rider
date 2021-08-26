@@ -40,7 +40,7 @@ class ProfileDrawerContainer extends StatelessWidget {
                       Text(
                         Provider.of<AppData>(context)
                             .currentUserInfo
-                            .name!, //todo check if listen false is necessary?
+                            .name!,
                         style: TextStyle(
                             fontSize: defaultSize * 1.7,
                             fontFamily: "Brand-Bold"),

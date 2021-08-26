@@ -66,7 +66,7 @@ class PlaceDirection {
     ///declaring and creating a polyline
     Polyline _polyline = Polyline(
       polylineId: PolylineId("PolylineID"),
-      color: Colors.red,
+      color: Colors.black,
       jointType: JointType.round,
       points: _pLineCoordinates,
       width: (defaultSize.toInt() * .4).toInt(),
