@@ -1,4 +1,4 @@
-# Cruiser
+# Cruiser Rider
 
 A new Flutter project.
 
