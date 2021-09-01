@@ -65,7 +65,7 @@ class GeoFireAssistant {
       ImageConfiguration imageConfiguration =
           createLocalImageConfiguration(context, size: Size(2, 2));
       BitmapDescriptor.fromAssetImage(
-              imageConfiguration, "assets/images/car_android.png")
+              imageConfiguration, "assets/images/car-android.png")
           .then((value) => nearbyIcon = value);
     }
   }
