@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:uber_clone/configs/GeofireAvailableDriverMethods/geoFireNearestAvailableDriver.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
-import 'package:uber_clone/database/RideRequestMethods/saveRideRequests.dart';
 
 class CabRequestBottomSheet extends StatelessWidget {
   final double defaultSize;
@@ -143,7 +143,8 @@ class CabRequestBottomSheet extends StatelessWidget {
                 onPressed: () async {
                   Provider.of<AppData>(context, listen: false)
                       .updateRideRequest();
-                  await SaveRideRequest.saveRideRequest(context);
+                  NearestAvailableDriver.searchNearestDriver(
+                      context, defaultSize);
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(
