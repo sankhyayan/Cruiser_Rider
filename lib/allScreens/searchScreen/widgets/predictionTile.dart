@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uber_clone/allWidgets/progressDialog.dart';
+import 'package:uber_clone/allOverAppWidgets/progressDialog.dart';
 import 'package:uber_clone/configs/locationRequests/addressDetails.dart';
 import 'package:uber_clone/models/placePredictions.dart';
 

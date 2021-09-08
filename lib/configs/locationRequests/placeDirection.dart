@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:uber_clone/allWidgets/progressDialog.dart';
+import 'package:uber_clone/allOverAppWidgets/progressDialog.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
 import 'package:uber_clone/models/directionDetails.dart';

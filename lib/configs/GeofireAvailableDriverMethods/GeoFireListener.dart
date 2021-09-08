@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:provider/provider.dart';
-import 'package:uber_clone/configs/GeofireMethods/geoFireAssistance.dart';
+import 'package:uber_clone/configs/GeofireAvailableDriverMethods/geoFireAssistance.dart';
 import 'package:uber_clone/configs/locationRequests/userGeoLocator.dart';
-import 'package:uber_clone/configs/providers/appDataProvider.dart';
 import 'package:uber_clone/models/nearbyAvailableDrivers.dart';
 
 class GeoFireListener {
@@ -37,9 +35,7 @@ class GeoFireListener {
             nearbyAvailableDrivers.longitude = map['longitude'];
             GeoFireAssistant.nearbyAvailableDriversList
                 .add(nearbyAvailableDrivers);
-            if (nearByAvailableDriversLoaded) {
-              GeoFireAssistant.updateAvailableDriversOnMap(context);
-            }
+            GeoFireAssistant.updateAvailableDriversOnMap(context);
             break;
 
           ///drivers becoming offline

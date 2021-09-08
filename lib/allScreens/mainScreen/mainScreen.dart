@@ -9,7 +9,7 @@ import 'package:uber_clone/allScreens/mainScreen/widgets/cancelRide.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/findingDriver.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/locationEntrySheet.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/profileDrawerContainer.dart';
-import 'package:uber_clone/configs/GeofireMethods/GeoFireListener.dart';
+import 'package:uber_clone/configs/GeofireAvailableDriverMethods/GeoFireListener.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
 import 'package:uber_clone/configs/locationRequests/userGeoLocator.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';

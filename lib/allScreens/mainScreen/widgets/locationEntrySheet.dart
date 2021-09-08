@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uber_clone/allOverAppWidgets/divider.dart';
 import 'package:uber_clone/allScreens/searchScreen/searchScreen.dart';
-import 'package:uber_clone/allWidgets/divider.dart';
-import 'package:uber_clone/configs/constants.dart';
 import 'package:uber_clone/configs/locationRequests/placeDirection.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
 
@@ -21,7 +20,7 @@ class LocationEntryBottomSheet extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Constants.kShadowColor,
+            color: Colors.black,
             blurRadius: defaultSize * .8,
             spreadRadius: defaultSize * .03,
             offset: Offset(defaultSize * .02, defaultSize * .02),

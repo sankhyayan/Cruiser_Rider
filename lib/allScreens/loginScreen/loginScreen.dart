@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:uber_clone/SnackBars/errorSnackBars.dart';
+import 'package:uber_clone/allOverAppWidgets/errorSnackBars.dart';
+import 'package:uber_clone/allOverAppWidgets/progressDialog.dart';
 import 'package:uber_clone/allScreens/mainScreen/mainScreen.dart';
 import 'package:uber_clone/allScreens/registrationScreen/registrationScreen.dart';
-import 'package:uber_clone/allWidgets/progressDialog.dart';
-import 'package:uber_clone/configs/constants.dart';
 import 'package:uber_clone/configs/sizeConfig.dart';
 import 'package:uber_clone/database/authMethods/login.dart';
 import 'package:uber_clone/main.dart';
@@ -150,7 +149,7 @@ class LoginScreen extends StatelessWidget {
                         }
                       }
                     },
-                    color: Constants.kPrimaryColor,
+                    color: Colors.black,
                     textColor: Colors.white,
                     child: Container(
                       height: defaultSize * 5,
@@ -191,7 +190,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.pushNamedAndRemoveUntil(context,
                           RegistrationScreen.idScreen, (route) => false);
                     },
-                    color: Constants.kPrimaryColor,
+                    color: Colors.black,
                     textColor: Colors.white,
                     child: Container(
                       height: defaultSize * 5,
