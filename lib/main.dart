@@ -14,11 +14,26 @@ void main() async {
   runApp(UberClone());
 }
 
+///rider reference
 final DatabaseReference usersRef = FirebaseDatabase(
         databaseURL:
             "https://uber-clone-64d20-default-rtdb.asia-southeast1.firebasedatabase.app")
     .reference()
     .child("Users");
+
+///driver reference
+final DatabaseReference driversRef = FirebaseDatabase(
+        databaseURL:
+            "https://uber-clone-64d20-default-rtdb.asia-southeast1.firebasedatabase.app")
+    .reference()
+    .child("Drivers");
+
+///ride request reference
+final DatabaseReference rideRequestRef = FirebaseDatabase(
+        databaseURL:
+            "https://uber-clone-64d20-default-rtdb.asia-southeast1.firebasedatabase.app")
+    .reference()
+    .child("Ride Requests");
 
 class UberClone extends StatelessWidget {
   @override

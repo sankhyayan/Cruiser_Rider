@@ -96,7 +96,7 @@ class AppData extends ChangeNotifier {
   }
 
   void clearRideRequest(BuildContext context) async{
-    await CancelRideRequest.cancelRideRequest(context);
+    await CancelRideRequest.removeRideRequest(context);
     rideRequest = false;
     notifyListeners();
   }

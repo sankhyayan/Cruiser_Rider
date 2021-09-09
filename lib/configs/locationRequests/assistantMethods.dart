@@ -15,7 +15,7 @@ class AssistantMethods {
         "https://api.opencagedata.com/geocode/v1/json?q=${position.latitude}+${position.longitude}&key=fde6f1133f604872844f2d8856dbbf62";
     var _response = await RequestAssistant.getRequest(_apiUrl);
     if (_response != "Failed") {
-      String road, suburb, city;
+      String road="", suburb="", city="";
       road = _response["results"][0]["components"]["road"];
       suburb = _response["results"][0]["components"]["suburb"];
       city = _response["results"][0]["components"]["city"];

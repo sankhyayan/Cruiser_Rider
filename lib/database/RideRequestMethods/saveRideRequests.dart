@@ -1,15 +1,8 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
+import 'package:uber_clone/main.dart';
 import 'package:uber_clone/models/address.dart';
-
-///using push so that the order is chronologically sorted
-final DatabaseReference rideRequestRef = FirebaseDatabase(
-        databaseURL:
-            "https://uber-clone-64d20-default-rtdb.asia-southeast1.firebasedatabase.app")
-    .reference()
-    .child("Ride Requests");
 
 class SaveRideRequest {
   static Future<void> saveRideRequest(BuildContext context) async {

@@ -143,7 +143,7 @@ class CabRequestBottomSheet extends StatelessWidget {
                 onPressed: () async {
                   Provider.of<AppData>(context, listen: false)
                       .updateRideRequest();
-                  NearestAvailableDriver.searchNearestDriver(
+                  await NearestAvailableDriver.searchNearestDriver(
                       context, defaultSize);
                 },
                 child: Padding(

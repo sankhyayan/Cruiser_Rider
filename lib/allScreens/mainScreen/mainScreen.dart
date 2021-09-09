@@ -84,7 +84,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 )
               : IconButton(
                   onPressed: () async {
-                    ResetData.resetData(context);
+                    await ResetData.resetData(context);
                     newGoogleMapController.animateCamera(
                         CameraUpdate.newCameraPosition(
                             await UserGeoLocation.getCamPosition()));

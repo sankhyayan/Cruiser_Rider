@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:uber_clone/configs/GeofireAvailableDriverMethods/GeoFireListener.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
 import 'package:uber_clone/models/address.dart';
 import 'package:uber_clone/models/directionDetails.dart';
 
 class ResetData {
-  static void resetData(BuildContext context) async{
+  static Future<void> resetData(BuildContext context) async {
     ///resetting home address
     Provider.of<AppData>(context, listen: false)
         .updatePickupLocation(Address(placeName: "Add Home"));
@@ -37,8 +38,11 @@ class ResetData {
           distanceText: "",
           durationText: ""),
     );
-    ///resetting ride request
-    Provider.of<AppData>(context,listen: false).clearRideRequest(context);
 
+    ///resetting ride request
+    Provider.of<AppData>(context, listen: false).clearRideRequest(context);
+
+    ///resetting nearby drivers
+    await GeoFireListener.initGeoFireListener(context);
   }
 }
