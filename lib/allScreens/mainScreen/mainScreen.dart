@@ -6,8 +6,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/cabRequestSheet.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/cancelRide.dart';
+import 'package:uber_clone/allScreens/mainScreen/widgets/driverInfo.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/findingDriver.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/locationEntrySheet.dart';
+import 'package:uber_clone/allScreens/mainScreen/widgets/ongoinTripCancelButton.dart';
 import 'package:uber_clone/allScreens/mainScreen/widgets/profileDrawerContainer.dart';
 import 'package:uber_clone/configs/GeofireAvailableDriverMethods/GeoFireListener.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
@@ -57,6 +59,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ? defaultSize
             : 0.0;
 
+    ///driver details bottom sheet height adder
+    final double driverInfoBottomSheet =
+        Provider.of<AppData>(context).requestedRideAcceptedStatus
+            ? defaultSize
+            : 0.0;
+
     ///animate map? checker
     if (Provider.of<AppData>(context).animateMap)
       newGoogleMapController.animateCamera(
@@ -74,7 +82,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
         ///hamburger button for drawer
         leading: Container(
-          child: Provider.of<AppData>(context).response != "obtainDirection"
+          child: Provider.of<AppData>(context, listen: false).response !=
+                      "obtainDirection" ||
+                  Provider.of<AppData>(context).requestedRideAcceptedStatus
               ? IconButton(
                   onPressed: () => scaffoldKey.currentState!.openDrawer(),
                   icon: Icon(
@@ -178,6 +188,16 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ),
           ),
 
+          ///display assigned driver info
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: DriverInfoSheet(
+              defaultSize: driverInfoBottomSheet,
+            ),
+          ),
+
           ///finding driver
           Provider.of<AppData>(context).rideRequest
               ? Positioned(
@@ -194,6 +214,17 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           Provider.of<AppData>(context).rideRequest
               ? CancelRide(
                   defaultSize: defaultSize,
+                )
+              : Container(),
+
+          ///cancel ongoing trip
+          Provider.of<AppData>(context).requestedRideAcceptedStatus
+              ? Positioned(
+                  bottom: defaultSize * 45,
+                  left: 0,
+                  child: OngoingTripCancelButton(
+                    defaultSize: defaultSize,
+                  ),
                 )
               : Container(),
         ],

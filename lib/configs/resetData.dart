@@ -42,6 +42,9 @@ class ResetData {
     ///resetting ride request
     Provider.of<AppData>(context, listen: false).clearRideRequest(context);
 
+    ///resetting ride request status
+    Provider.of<AppData>(context, listen: false).clearRideRequestStatus(context);
+
     ///resetting nearby drivers
     await GeoFireListener.initGeoFireListener(context);
   }

@@ -8,6 +8,7 @@ import 'package:uber_clone/configs/apiConfigs.dart';
 import 'package:uber_clone/configs/notificationSender/notifyNearestDriver.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
 import 'package:uber_clone/main.dart';
+import 'package:uber_clone/models/driverDataFromSnapshot.dart';
 import 'package:uber_clone/models/nearbyAvailableDrivers.dart';
 
 class NearestDriverDetails {
@@ -42,19 +43,37 @@ class NearestDriverDetails {
           driverRequestTimeout = 30;
           timer.cancel();
         }
-        driverRequestTimeout = driverRequestTimeout - 1;
-        print("Timeout: $driverRequestTimeout");
+        driverRequestTimeout = driverRequestTimeout;
 
         ///listening to changes in driverState[accepted ride request state setter]
         driversRef
             .child(driver.key!)
             .child("driverState")
             .onValue
-            .listen((state) {
+            .listen((state) async {
           if (state.snapshot.value.toString() == "accepted") {
             driversRef.child(driver.key!).child("driverState").onDisconnect();
             driverRequestTimeout = 30;
             timer.cancel();
+
+            ///getting current driver details
+            await rideRequestRef
+                .child(Provider.of<AppData>(context, listen: false)
+                    .currentUserInfo
+                    .id!)
+                .once()
+                .then((DataSnapshot snapshot) async {
+              if (await snapshot.value != null) {
+                DriverDataFromSnapshot currentDriver =
+                    DriverDataFromSnapshot.fromSnapshot(snapshot);
+                Provider.of<AppData>(context, listen: false)
+                    .getCurrentDriverInfo(currentDriver);
+              }
+            });
+
+            ///ride accepted provider setter
+            Provider.of<AppData>(context, listen: false)
+                .updateRideRequestStatus();
           }
         });
 
