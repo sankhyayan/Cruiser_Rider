@@ -25,9 +25,7 @@ class RideStatusListener {
                   .id!)
               .child("payment_method")
               .get()
-              .then((DataSnapshot? payment) {
-            return payment!.value.toString();
-          });
+              .then((DataSnapshot? payment) => payment!.value.toString());
 
           ///getting fare Amount
           String fareAmount = await rideRequestRef
@@ -36,9 +34,7 @@ class RideStatusListener {
                   .id!)
               .child("fare")
               .get()
-              .then((DataSnapshot? fareAmount) {
-            return fareAmount!.value.toString();
-          });
+              .then((DataSnapshot? fareAmount) => fareAmount!.value.toString());
 
           ///displaying collect fare dialog
           showDialog(

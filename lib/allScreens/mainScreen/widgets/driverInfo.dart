@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_clone/configs/locationRequests/assistantMethods.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DriverInfoSheet extends StatelessWidget {
   final double defaultSize;
@@ -191,36 +192,40 @@ class DriverInfoSheet extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(
-              constraints: BoxConstraints(
-                maxHeight: defaultSize * 15,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
+            child: GestureDetector(
+              onTap: () => launch(
+                  "tel://${Provider.of<AppData>(context, listen: false).currentDriverInfo.phone!}"),
+              child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: defaultSize * 15,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black54,
-                    spreadRadius: defaultSize * .25,
-                    blurRadius: defaultSize * 5,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: defaultSize),
-                    child: Icon(
-                      Icons.call,
-                      color: Colors.white,
-                      size: defaultSize * 5,
-                    ),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
                   ),
-                ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      spreadRadius: defaultSize * .25,
+                      blurRadius: defaultSize * 5,
+                    )
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: defaultSize),
+                      child: Icon(
+                        Icons.call,
+                        color: Colors.white,
+                        size: defaultSize * 5,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
