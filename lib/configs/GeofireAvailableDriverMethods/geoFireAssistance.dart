@@ -16,9 +16,10 @@ class GeoFireAssistant {
     ///searching index where element's key=our sent key
     int index =
         nearbyAvailableDriversList.indexWhere((element) => element.key == key);
-
-    ///deleting only required index value
-    nearbyAvailableDriversList.removeAt(index);
+    if(nearbyAvailableDriversList.length!=0){
+      ///deleting only required index value
+      nearbyAvailableDriversList.removeAt(index);
+    }
   }
 
   ///live location update function
@@ -42,17 +43,19 @@ class GeoFireAssistant {
     Provider.of<AppData>(context, listen: false).clearMarkersSet();
     Set<Marker> driverMarkers = Set<Marker>(); //driver marker set
     ///adding driver markers to set
-    for (NearbyAvailableDrivers driver
-        in GeoFireAssistant.nearbyAvailableDriversList) {
-      LatLng driverAvailablePosition =
-          LatLng(driver.latitude!, driver.longitude!);
-      Marker marker = Marker(
-        markerId: MarkerId("driver${driver.key}"),
-        position: driverAvailablePosition,
-        icon: nearbyIcon,
-        rotation: GeoFireAssistant.createRandomNumber(360),
-      );
-      driverMarkers.add(marker);
+    if (nearbyAvailableDriversList.length != 0) {
+      for (NearbyAvailableDrivers driver
+          in GeoFireAssistant.nearbyAvailableDriversList) {
+        LatLng driverAvailablePosition =
+            LatLng(driver.latitude!, driver.longitude!);
+        Marker marker = Marker(
+          markerId: MarkerId("driver${driver.key}"),
+          position: driverAvailablePosition,
+          icon: nearbyIcon,
+          rotation: GeoFireAssistant.createRandomNumber(360),
+        );
+        driverMarkers.add(marker);
+      }
     }
 
     ///updating markers set in provider

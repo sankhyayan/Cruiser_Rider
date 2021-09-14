@@ -40,9 +40,11 @@ class DriverInfoSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //todo trip state set
+                      //todo: live time track not working
                       Text(
-                        "Trip Status",
+                        "Arriving in " +
+                            Provider.of<AppData>(context, listen: false)
+                                .tripTimeStatus,
                         style: TextStyle(
                           fontSize: defaultSize * 2,
                           fontFamily: "Brand Bold",
@@ -110,69 +112,79 @@ class DriverInfoSheet extends StatelessWidget {
                   SizedBox(
                     height: defaultSize * 2,
                   ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: defaultSize * 2,
-                        backgroundColor: Colors.black,
-                        child: Icon(
-                          Icons.face,
-                          color: Colors.white,
+                  Expanded(
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: defaultSize * 2,
+                          backgroundColor: Colors.black,
+                          child: Icon(
+                            Icons.face,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: defaultSize * 1.5,
-                      ),
-                      Expanded(
-                        child: Text(
+                        SizedBox(
+                          width: defaultSize * 1.5,
+                        ),
+                        Text(
                           Provider.of<AppData>(context, listen: false)
                               .currentDriverInfo
                               .name!,
+                          maxLines: 1,
+                          softWrap: true,
                           style: TextStyle(
                             fontSize: defaultSize * 2,
                             fontFamily: "Brand Bold",
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(),
-                      ),
-                      Text(
-                        "5★",
-                        style: TextStyle(
-                          fontSize: defaultSize * 2,
-                          fontFamily: "Brand Bold",
+                        Expanded(
+                          child: Container(),
                         ),
-                      )
-                    ],
+                        Text(
+                          "5★",
+                          style: TextStyle(
+                            fontSize: defaultSize * 2,
+                            fontFamily: "Brand Bold",
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: defaultSize * 1.5,
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: defaultSize * .3,
-                      ),
-                      Icon(
-                        FontAwesomeIcons.car,
-                        size: defaultSize * 3.6,
-                      ),
-                      SizedBox(
-                        width: defaultSize * 1.5,
-                      ),
-                      Expanded(
-                        child: Text(
+                  Expanded(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: defaultSize * .3,
+                        ),
+                        Icon(
+                          FontAwesomeIcons.car,
+                          size: defaultSize * 3.6,
+                        ),
+                        SizedBox(
+                          width: defaultSize * 1.5,
+                        ),
+                        Text(
                           Provider.of<AppData>(context, listen: false)
-                              .currentDriverInfo
-                              .carDetails!,
+                                      .currentDriverInfo
+                                      .carDetails !=
+                                  ""
+                              ? Provider.of<AppData>(context, listen: false)
+                                      .currentDriverInfo
+                                      .carDetails!
+                                      .substring(0, 24) +
+                                  "..."
+                              : "",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: defaultSize * 2,
                             fontFamily: "Brand Bold",
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

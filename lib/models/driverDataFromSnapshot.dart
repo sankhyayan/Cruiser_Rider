@@ -9,6 +9,3 @@ class DriverDataFromSnapshot{
     phone=dataSnapshot.value["driver_phone"].toString();
   }
 }
-/*car details
-* driver name
-* driver phone*/

@@ -79,7 +79,7 @@ class PlaceDirection {
     _polylineSet.clear();
     _polylineSet.add(_polyline);
 
-    ///getting latlng bounds for the map
+    ///getting latLng bounds for the map
     LatLngBounds latLngBounds = LatLngBounds(
         southwest:
             LatLng(_directionDetails.minLat!, _directionDetails.minLong!),
@@ -90,7 +90,7 @@ class PlaceDirection {
     Provider.of<AppData>(context, listen: false)
         .updatePolyLineSet(_polylineSet);
 
-    ///updating latlng bounds in provider
+    ///updating latLng bounds in provider
     Provider.of<AppData>(context, listen: false)
         .updateLatLngBounds(latLngBounds);
 

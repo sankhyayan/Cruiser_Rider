@@ -47,7 +47,6 @@ class NotifyNearestDriver {
           Uri.parse("https://fcm.googleapis.com/fcm/send"),
           headers: headerMap,
           body: jsonEncode(sendNotificationMap));
-      print("Request Status: " + res.statusCode.toString());
     } on Exception catch (e) {
       print(e);
     }

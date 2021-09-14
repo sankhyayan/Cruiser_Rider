@@ -7,6 +7,7 @@ import 'package:uber_clone/configs/GeofireAvailableDriverMethods/geoFireNearestA
 import 'package:uber_clone/configs/apiConfigs.dart';
 import 'package:uber_clone/configs/notificationSender/notifyNearestDriver.dart';
 import 'package:uber_clone/configs/providers/appDataProvider.dart';
+import 'package:uber_clone/configs/rideRequestAcceptedMethods/rideStatusListener.dart';
 import 'package:uber_clone/main.dart';
 import 'package:uber_clone/models/driverDataFromSnapshot.dart';
 import 'package:uber_clone/models/nearbyAvailableDrivers.dart';
@@ -43,7 +44,9 @@ class NearestDriverDetails {
           driverRequestTimeout = 30;
           timer.cancel();
         }
-        driverRequestTimeout = driverRequestTimeout;
+
+        ///decreasing by 1 each second
+        driverRequestTimeout = driverRequestTimeout - 1;
 
         ///listening to changes in driverState[accepted ride request state setter]
         driversRef
@@ -55,25 +58,33 @@ class NearestDriverDetails {
             driversRef.child(driver.key!).child("driverState").onDisconnect();
             driverRequestTimeout = 30;
             timer.cancel();
+            Future.delayed(Duration(seconds: 5), () async {
+              ///getting current driver details
+              await rideRequestRef
+                  .child(Provider.of<AppData>(context, listen: false)
+                      .currentUserInfo
+                      .id!)
+                  .once()
+                  .then((DataSnapshot snapshot) async {
+                if (await snapshot.value != null) {
+                  DriverDataFromSnapshot currentDriver =
+                      DriverDataFromSnapshot.fromSnapshot(snapshot);
+                  Provider.of<AppData>(context, listen: false)
+                      .getCurrentDriverInfo(currentDriver);
+                }
+              });
 
-            ///getting current driver details
-            await rideRequestRef
-                .child(Provider.of<AppData>(context, listen: false)
-                    .currentUserInfo
-                    .id!)
-                .once()
-                .then((DataSnapshot snapshot) async {
-              if (await snapshot.value != null) {
-                DriverDataFromSnapshot currentDriver =
-                    DriverDataFromSnapshot.fromSnapshot(snapshot);
-                Provider.of<AppData>(context, listen: false)
-                    .getCurrentDriverInfo(currentDriver);
-              }
+              ///tracking live location of driver
+              //await DriverLiveLocationTrack.track(context);
+              //todo try re initializing
+
+              ///Ride accepted provider setter
+              Provider.of<AppData>(context, listen: false)
+                  .updateRideRequestStatus();
+
+              ///initializing ride status listener
+              await RideStatusListener.listen(context, defaultSize);
             });
-
-            ///ride accepted provider setter
-            Provider.of<AppData>(context, listen: false)
-                .updateRideRequestStatus();
           }
         });
 

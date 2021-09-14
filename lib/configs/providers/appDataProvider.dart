@@ -22,8 +22,11 @@ class AppData extends ChangeNotifier {
   String response = "";
   bool rideRequest = false;
   bool requestedRideAcceptedStatus = false;
+  String tripTimeStatus = "";
+  String tripStatus="";
   LatLngBounds latLngBounds =
       LatLngBounds(southwest: LatLng(0.0, 0.0), northeast: LatLng(0.0, 0.0));
+  LatLng driverCurrentLocation = LatLng(0.0, 0.0);
   void updatePickupLocation(Address _pickupAddress) {
     pickupLocation = _pickupAddress;
     notifyListeners();
@@ -51,6 +54,21 @@ class AppData extends ChangeNotifier {
 
   void updateLatLngBounds(LatLngBounds _latLngBounds) {
     latLngBounds = _latLngBounds;
+    notifyListeners();
+  }
+
+  void updateTripTimeStatus(String _tripTime) {
+    tripTimeStatus=_tripTime;
+    notifyListeners();
+  }
+
+  void updateTripStatus(String _tripStatus) {
+    tripStatus=_tripStatus;
+    notifyListeners();
+  }
+
+  void updateCurrentDriverLocation(LatLng _currentDriverLocation) {
+    driverCurrentLocation = _currentDriverLocation;
     notifyListeners();
   }
 
